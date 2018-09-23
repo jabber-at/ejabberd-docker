@@ -5,7 +5,7 @@ RUN apt-get install -y gnupg2 wget apt-transport-https
 RUN echo "deb https://apt.jabber.at stretch ejabberd" > /etc/apt/sources.list.d/jabber.at.list
 RUN wget -qO- https://apt.jabber.at/gpg-key | apt-key add -
 RUN apt-get update
-RUN apt-get install -y ejabberd erlang-p1-sip
+RUN apt-get install -y ejabberd erlang-p1-sip ejabberd-contrib
 RUN mkdir -p /run/ejabberd
 RUN chown ejabberd:ejabberd /run/ejabberd /var/lib/ejabberd
 
