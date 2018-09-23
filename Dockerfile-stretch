@@ -1,0 +1,12 @@
+FROM debian
+WORKDIR /var/lib/ejabberd
+RUN apt-get update
+RUN apt-get install -y ejabberd erlang-p1-sip
+RUN mkdir -p /run/ejabberd
+RUN chown ejabberd:ejabberd /run/ejabberd /var/lib/ejabberd
+RUN echo ERL_OPTIONS="-kernel inetrc /tmp/inetrc" >> /etc/default/ejabberd
+
+USER ejabberd
+EXPOSE 5222 5269 5280
+VOLUME ["/var/lib/ejabberd", "/etc/ejabberd", "/var/log/ejabberd"]
+CMD ["/usr/sbin/ejabberdctl", "foreground"]
