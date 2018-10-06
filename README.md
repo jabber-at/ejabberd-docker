@@ -10,6 +10,6 @@ Docker containers for ejabberd based on the Debian packages provided by jabber.a
 
 ```
 docker build --no-cache -t ejabberd:<version> .
-docker tag ejabberd mathiasertl/ejabberd:<version>
+docker tag ejabberd:<version> mathiasertl/ejabberd:<version>
 docker push mathiasertl/ejabberd:<version>
 ```
