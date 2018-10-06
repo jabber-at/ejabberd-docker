@@ -8,6 +8,7 @@ RUN apt-get update
 RUN apt-get install -y ejabberd erlang-p1-sip
 RUN mkdir -p /run/ejabberd
 RUN chown ejabberd:ejabberd /run/ejabberd /var/lib/ejabberd
+ADD files/15.07/ejabberdctl /usr/sbin/ejabberdctl
 
 USER ejabberd
 EXPOSE 5222 5269 5280
