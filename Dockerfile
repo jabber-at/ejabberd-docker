@@ -5,10 +5,12 @@ RUN apt-get update \
 RUN echo "deb https://apt.jabber.at stretch ejabberd" > /etc/apt/sources.list.d/jabber.at.list \
     && wget -qO- https://apt.jabber.at/gpg-key | apt-key add -
 RUN apt-get update \
-    && apt-get install -y ejabberd erlang-p1-sip ejabberd-contrib
+    && apt-get install -y ejabberd erlang-p1-sip ejabberd-contrib patch
 RUN mkdir -p /run/ejabberd \
     && chown ejabberd:ejabberd /run/ejabberd /var/lib/ejabberd
-RUN patch -p1 /usr/sbin/ejabberdctl < files/inetrc.patch
+ADD files/inetrc /etc/
+ADD files/inetrc.patch /tmp/
+RUN patch -p1 /usr/sbin/ejabberdctl < /tmp/inetrc.patch && rm /tmp/inetrc.patch
 
 USER ejabberd
 EXPOSE 5222 5223 5269 5270 5280
